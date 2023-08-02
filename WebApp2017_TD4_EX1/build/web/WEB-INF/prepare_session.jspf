@@ -1,0 +1,7 @@
+<%
+    Devinette devinetteInstance =(Devinette)session.getAttribute("devinette");
+    if (devinetteInstance==null){
+    devinetteInstance=new Devinette();
+    session.setAttribute("devinette",devinetteInstance);
+    }    
+    %>

@@ -1,0 +1,18 @@
+SMAP
+page1_jsp.java
+JSP
+*S JSP
+*F
++ 0 page1.jsp
+page1.jsp
++ 1 prepare_session.jsp
+WEB-INF/prepare_session.jsp
+*L
+5,12:50
+1#1:62
+3,6:64
+8:70
+16#0:71
+17,2:72,3
+19,3:78
+*E

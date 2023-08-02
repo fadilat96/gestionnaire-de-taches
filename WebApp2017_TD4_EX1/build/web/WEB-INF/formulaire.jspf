@@ -1,0 +1,5 @@
+<form action="executerDevinette.jsp">
+    Nombre a essayer: 
+    <input type="text" name="nombre" value="" /><br>
+    <input type="submit" name="submit" value="Essayer" />
+</form>
