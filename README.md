@@ -1,7 +1,46 @@
 # Gestionnaire de taches
 # JSP
 
-## Exercice 1 :
+## TD3 – INFO319
+## Attributs de page JSP, directive « include »
+
+### Exercice 1 :
+Ecrire une page JSP qui affiche un compteur du nombre de visites en utilisant un attribut de page.
+Est-ce qu’on peut réaliser le même compteur avec une variable locale de page ? Justifier
+### Exercice 2 :
+Déduire le traitement réalisé par cette page en analysant plusieurs exécutions consécutives.
+```jsp
+<%int x=0,y=0;
+if (request.getParameter("envoyer")!=null){
+int val = Integer.parseInt(request.getParameter("val"));
+x = Integer.parseInt(request.getParameter("x"));
+y = Integer.parseInt(request.getParameter("y"));
+if (val==x) y++;
+else y=1;
+x=val;}%>
+<h1><%=y%></h1>
+<form id="form1" name="form1" method="post" action=" /page.jsp">
+<input name="val" type="text"/><input type="hidden" name="x"
+value="<%=x%>"/> <input type="hidden" name="y" value="<%=y%>"/>
+<input type="submit" name="envoyer" value="envoyer" /> </form></body></html>
+  ```
+### Exercice 3 :
+On veut implémenter un mécanisme d’identification dans une page JSP. Lors du premier affichage
+de la page, cette dernière affiche un formulaire (avec la directive « include ») permettant de saisir
+un nom d’utilisateur et un mot de passe. L’utilisateur saisie ces deux valeurs et les soumet à la page
+qui les vérifie, s’ils sont correctes alors un message de bien venu sera affiché, sinon la page renvoie
+le formulaire d’identification pour essayer à nouveau.
+- Quelles sont les conséquences d’utilisation d’un attribut de page comme mécanisme
+d’identification sur un site web multi-utilisateurs et multipages?
+- Ajouter à la page un mécanisme qui limite le nombre d’essais incorrects à 3, puis affiche un
+message d’erreur et n’autorise plus les essais.
+  
+*N.B : normalement, les identifiants des utilisateurs sont stockés dans une BDD, mais pour
+simplifier on les considère comme des constantes de la page JSP.*
+
+## TD4 – INFO319
+## Session, Classes « Métier »
+### Exercice 1 :
 On veut réaliser un jeu de devinette sous forme d’une page JSP. La première fois que le jeu est
 lancé, l’application crée un nombre aléatoire entre 1 et 99. Ensuite elle demande à l’utilisateur
 d’essayer de trouver le nombre deviné. A chaque essai incorrecte, le jeu informe l’utilisateur s’il
@@ -11,9 +50,8 @@ nombre d’essais et le jeu sera réinitialisé pour permettre de lancer une nou
 Indications : - la saisie d’un essai se fait à l’aide d’un formulaire envoyé par la page
 - utiliser une session pour maintenir les données du jeu.
 - utiliser la méthode « Math.random( ) » pour la génération du nombre aléatoire.
-
   
-## Exercice 2 : Gestionnaire de tâches « TODO »
+### Exercice 2 : Gestionnaire de tâches « TODO »
 On souhaite développer une application JSP pour l’introduction des tâches de type « TODO » pour
 un utilisateur. Une tâche TODO est composée de : titre de la tâche, Description de la tâche,
 Catégorie de la tâche (« secondaire », « normale », « urgente »,). Un Exemple de tâche : (« réparer
@@ -29,8 +67,7 @@ des trois premiers liens, il obtient en résultat toutes les tâches TODO de la 
 l’utilisateur clique sur le lien « ALL » il obtient toutes les tâches TODO saisies peu importe la
 catégorie. Finalement, pour mémoriser la liste des tâches, on utilise un objet « session ».
 
-
-## Exercice 3 : Carnet d’adresses
+### Exercice 3 : Carnet d’adresses
 On veut créer un carnet d’adresses en version WEB. Chaque contact du carnet contient les
 informations suivantes : Nom, Prénom, Adresse et Tel. Le formulaire de saisie contient deux
 boutons : « Ajouter » et « Terminer ». Le bouton « Ajouter » permet d’ajouter un nouvel contact au
@@ -44,36 +81,23 @@ sous forme de tableau (ajouter un lien pour relancer une nouvelle recherche).
 de Google).
 - Créer une page principale qui permet de lancer les trois options déjà développées, ajouter des liens
 de retour sur la page principale.
-
-## Exercise 1: Number Guessing Game
-
-We want to create a number guessing game as a JSP page. The first time the game is launched, the application generates a random number between 1 and 99. It then asks the user to try to guess the number. With each incorrect attempt, the game informs the user whether to try a lower or higher number until they find the correct value. Once the number is guessed, the application displays a congratulatory message, including the number of attempts, and resets the game for a new session.
-
-Instructions:
-- Use a form to collect user guesses.
-- Utilize a session to maintain game data.
-- Utilize the `Math.random()` method for generating a random number.
-
-## Exercise 2: TODO Task Manager
-
-We want to develop a JSP application for managing "TODO" tasks for a user. A "TODO" task consists of a title, description, and category ("secondary," "normal," "urgent").
-
-Instructions:
-- The user starts by requesting the page and gets a form for entering TODO task data.
-- The form contains two buttons: "+" and "End."
-- The "+" button adds the current task data to the existing list of tasks and displays the same form for entering a new task. The old tasks are listed with a "Remove" button next to each task for deletion.
-- The "End" button finishes the input and takes the user to a page with 4 GET links corresponding to the three possible categories and the option "ALL."
-- Clicking on any of the first three links shows all TODO tasks of the selected category. Clicking on the "ALL" link displays all entered TODO tasks, regardless of the category.
-- Use a session to store the list of tasks.
-
-## Exercise 3: Address Book
-
-We want to create a web-based address book. Each contact in the address book includes the following information: Name, First Name, Address, and Telephone. The input form contains two buttons: "Add" and "Finish." The "Add" button allows users to add a new contact to the address book and displays the form again for entering a new contact. The "Finish" button displays the entire address book on a new page.
-
-Instructions:
-- Implement the "saisie.jsp" page for entering contact information.
-- Create a new page, "recherche.jsp," for searching contacts by the value of "name." The name is entered in a form, and all matching results are displayed in a table (add a link to restart a new search).
-- Generate a directory with one page for each letter and a navigation bar (similar to Google).
-- Create a main page to launch the three previously developed options, and add links to return to the main page.
-
-Please note that in real-world applications, storing data in sessions may not be ideal for scalability, and it is recommended to use a database to store persistent information.
+Exercice 4: Gestion des élections
+On veut réaliser une application web JSP pour gérer des élections. Les acteurs de cette
+application sont : les candidats, les partis et les électeurs. Un parti est un groupe politique
+défini par un nom et renferme 5 candidats. Un candidat possède un nom et une adresse. Un
+électeur possède un nom, un âge et un sexe, il vote en insérant dans une urne un bulletin de
+vote sur lequel il marque le nom du parti à qui il veut voter. L’application doit réaliser les
+actions suivantes :
+- Saisir la liste des électeurs
+- Saisir la liste des candidats
+- Saisir la liste des partis et définir les candidats de chaque parti
+- Introduire les bulletins des votes
+- Afficher le résultat des élections, en donnant pour chaque parti son nom, ses candidats, et
+le nombre de votes total.
+L’application Web doit être réalisée en se basant sur la technologie des pages JSP et HTML, et
+des classes métiers Java. Il est conseillé d’utiliser les TAG « include » dans la mesure de
+possible. On peut utiliser la « session » java pour maintenir les différentes listes. Pour les
+formulaires, ce n’est pas nécessaire d’écrire leur code HTML, seulement mentionner le nom
+de leurs champs, et l’action appelée par le « submit ».
+**Question 1 :** faire la conception de l’application
+**Question 2 :** faire la programmation des pages JSP et des classes « Métier »
